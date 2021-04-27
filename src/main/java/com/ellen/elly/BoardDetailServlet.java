@@ -7,15 +7,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list")
-public class BoardListServlet extends HttpServlet {
+
+@WebServlet("/detail")
+public class BoardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("data", Database.list); // 키, value값. ;
 		
-		String jsp = "/WEB-INF/jsp/list.jsp";
+		String no = request.getParameter("no");
+		request.setAttribute("data", Database.list.get(Integer.parseInt(no)));
+		
+		String jsp = "/WEB-INF/jsp/detail.jsp";
 		request.getRequestDispatcher(jsp).forward(request, response);
+		
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+//		response.sendRedirect("/mod");
 	}
 
 }

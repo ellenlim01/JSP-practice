@@ -7,15 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list")
-public class BoardListServlet extends HttpServlet {
+
+@WebServlet("/delete")
+public class BoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("data", Database.list); // 키, value값. ;
+
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String no = request.getParameter("no");
+		Database.list.remove(Integer.parseInt(no));
 		
-		String jsp = "/WEB-INF/jsp/list.jsp";
-		request.getRequestDispatcher(jsp).forward(request, response);
+		response.sendRedirect("/list");
+
 	}
 
 }
