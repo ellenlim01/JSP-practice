@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.ellen.elly.*" %>
-<%
-	String no = request.getParameter("no");
-	BoardVO vo = (BoardVO) request.getAttribute("data");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +13,14 @@ body {
 </style>
 </head>
 <body>
-		<h1> <%= vo.getTitle() %> </h1>
-		<div><%= vo.getContent() %></div>
+		<h1> ${data.title}</h1>
+		<div>${data.content}</div>
 
 		<form action="/delete" method="post">
-			<input type="hidden" name="no" value="<%= no%>">
+			<input type="hidden" name="no" value="${param.no}">
 			<input type="submit" value="삭제"> 
 		</form>
 
-			<a href="/modify?no=<%=no %>"><button>수정</button></a> 
+			<a href="/modify?no=${param.no}"><button>수정</button></a> 
 </body>
 </html>

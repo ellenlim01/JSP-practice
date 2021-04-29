@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "com.ellen.elly.*" %>
-<%
-	String no = request.getParameter("no");
-	BoardVO vo = (BoardVO) request.getAttribute("data");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +16,12 @@
 <body>
 	<h1>글 수정</h1>
 	<form action="/modify" method="post">
-		<input type="hidden" name="no" value=<%=no %>>
+		<input type="hidden" name="no" value="${param.no}">
 		<div>
-			제목 <input type="text" name="title" value=<%= vo.getTitle() %>>
+			제목 <input type="text" name="title" value="${data.title}">
 		</div>
 		<div>
-			내용: <textarea cols=10 rows=10 name="content"><%= vo.getContent() %></textarea>
+			내용: <textarea cols=10 rows=10 name="content">${data.content}</textarea>
 		</div>
 		<div>
 			<input type="submit" value="저장">
